@@ -33,6 +33,7 @@
             this.ToolStripMenuItemSettings = new System.Windows.Forms.ToolStripMenuItem();
             this.comboBoxProjects = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.buttonLoad = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -54,7 +55,6 @@
             this.ToolStripMenuItemOther.Name = "ToolStripMenuItemOther";
             this.ToolStripMenuItemOther.Size = new System.Drawing.Size(52, 20);
             this.ToolStripMenuItemOther.Text = "Other";
-            this.ToolStripMenuItemOther.Click += new System.EventHandler(this.ToolStripMenuItemOthers_Click);
             // 
             // ToolStripMenuItemSettings
             // 
@@ -67,7 +67,7 @@
             // 
             this.comboBoxProjects.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxProjects.FormattingEnabled = true;
-            this.comboBoxProjects.Location = new System.Drawing.Point(12, 57);
+            this.comboBoxProjects.Location = new System.Drawing.Point(12, 75);
             this.comboBoxProjects.Name = "comboBoxProjects";
             this.comboBoxProjects.Size = new System.Drawing.Size(260, 20);
             this.comboBoxProjects.TabIndex = 1;
@@ -75,17 +75,28 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(12, 42);
+            this.label1.Location = new System.Drawing.Point(12, 60);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(234, 12);
             this.label1.TabIndex = 2;
             this.label1.Text = "Projects (Displayed only assained projetcts.)";
+            // 
+            // buttonLoad
+            // 
+            this.buttonLoad.Location = new System.Drawing.Point(197, 27);
+            this.buttonLoad.Name = "buttonLoad";
+            this.buttonLoad.Size = new System.Drawing.Size(75, 23);
+            this.buttonLoad.TabIndex = 3;
+            this.buttonLoad.Text = "load";
+            this.buttonLoad.UseVisualStyleBackColor = true;
+            this.buttonLoad.Click += new System.EventHandler(this.buttonLoad_Click);
             // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(284, 261);
+            this.Controls.Add(this.buttonLoad);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.comboBoxProjects);
             this.Controls.Add(this.menuStrip1);
@@ -106,6 +117,7 @@
         private System.Windows.Forms.ToolStripMenuItem ToolStripMenuItemSettings;
         private System.Windows.Forms.ComboBox comboBoxProjects;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button buttonLoad;
 
     }
 }
