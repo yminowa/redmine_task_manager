@@ -34,6 +34,8 @@
             this.comboBoxProjects = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.buttonLoad = new System.Windows.Forms.Button();
+            this.label2 = new System.Windows.Forms.Label();
+            this.comboBoxTickets = new System.Windows.Forms.ComboBox();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -67,10 +69,11 @@
             // 
             this.comboBoxProjects.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxProjects.FormattingEnabled = true;
-            this.comboBoxProjects.Location = new System.Drawing.Point(12, 75);
+            this.comboBoxProjects.Location = new System.Drawing.Point(14, 75);
             this.comboBoxProjects.Name = "comboBoxProjects";
             this.comboBoxProjects.Size = new System.Drawing.Size(260, 20);
             this.comboBoxProjects.TabIndex = 1;
+            this.comboBoxProjects.SelectedIndexChanged += new System.EventHandler(this.comboBoxProjects_SelectedIndexChanged);
             // 
             // label1
             // 
@@ -91,11 +94,31 @@
             this.buttonLoad.UseVisualStyleBackColor = true;
             this.buttonLoad.Click += new System.EventHandler(this.buttonLoad_Click);
             // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(12, 107);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(43, 12);
+            this.label2.TabIndex = 4;
+            this.label2.Text = "Tickets";
+            // 
+            // comboBoxTickets
+            // 
+            this.comboBoxTickets.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBoxTickets.FormattingEnabled = true;
+            this.comboBoxTickets.Location = new System.Drawing.Point(14, 122);
+            this.comboBoxTickets.Name = "comboBoxTickets";
+            this.comboBoxTickets.Size = new System.Drawing.Size(260, 20);
+            this.comboBoxTickets.TabIndex = 5;
+            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(284, 261);
+            this.Controls.Add(this.comboBoxTickets);
+            this.Controls.Add(this.label2);
             this.Controls.Add(this.buttonLoad);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.comboBoxProjects);
@@ -118,6 +141,8 @@
         private System.Windows.Forms.ComboBox comboBoxProjects;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button buttonLoad;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.ComboBox comboBoxTickets;
 
     }
 }

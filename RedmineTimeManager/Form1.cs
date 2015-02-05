@@ -1,4 +1,6 @@
-﻿using Newtonsoft.Json.Linq;
+﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
+using RedmineTimeManager.models;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -36,36 +38,62 @@ namespace RedmineTimeManager
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private async void buttonLoad_Click(object sender, EventArgs e)
+        private void buttonLoad_Click(object sender, EventArgs e)
         {
-            String url = Properties.Settings.Default.URL;
-            String key = Properties.Settings.Default.Key;
+            comboBoxProjects.Items.Clear();
 
-            HttpClient client = new HttpClient();
-            client.DefaultRequestHeaders.Add("X-Redmine-API-Key", key);
-
-            HttpResponseMessage response = await client.GetAsync(url + "projects.json");
+            Request request = new Request();
+            HttpResponseMessage response = request.call("projects.json");
 
             HttpStatusCode status = response.StatusCode;
 
             if (status == HttpStatusCode.OK)
             {
                 // parse json
-                String result = await response.Content.ReadAsStringAsync();
-                JObject json = JObject.Parse(result);
+                String result = response.Content.ReadAsStringAsync().Result;
+                String json = JObject.Parse(result)["projects"].ToString();
+                List<Project> projects = JsonConvert.DeserializeObject<List<Project>>(json);
 
-                JToken projects = json["projects"];
-
-                // setup select
-                foreach(var project in projects)
+                // setup combo
+                foreach(Project project in projects)
                 {
-                    comboBoxProjects.Items.Add(project["name"]);
+                    comboBoxProjects.Items.Add(project);
+                    comboBoxProjects.DisplayMember = "Name";
+                    comboBoxProjects.ValueMember = "ID";
                 }
             }
             else
             {
                 // if status is not success, show error dialog
                 MessageBox.Show("load error: please check settings.");
+            }
+        }
+
+        private void comboBoxProjects_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            comboBoxTickets.Items.Clear();
+
+            String projectID = ((Project)comboBoxProjects.SelectedItem).ID;
+
+            Request request = new Request();
+            HttpResponseMessage response = request.call("issues.json", "?project_id=" + projectID);
+
+            HttpStatusCode status = response.StatusCode;
+
+            if (status == HttpStatusCode.OK)
+            {
+                // parse json
+                String result = response.Content.ReadAsStringAsync().Result;
+                String json = JObject.Parse(result)["issues"].ToString();
+                List<Issue> issues = JsonConvert.DeserializeObject<List<Issue>>(json);
+
+                // setup combo
+                foreach (Issue issue in issues)
+                {
+                    comboBoxTickets.Items.Add(issue);
+                    comboBoxTickets.DisplayMember = "Subject";
+                    comboBoxTickets.ValueMember = "ID";
+                }
             }
         }
     }
